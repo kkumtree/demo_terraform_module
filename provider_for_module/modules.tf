@@ -16,17 +16,13 @@ module "local_module_ec2" {
   sg_sg-nat_id = module.local_module_sg.aws_security_group_sg-nat_id
   sg_sg-ssh_id = module.local_module_sg.aws_security_group_sg-ssh_id
 
-  providers = {
-    aws = aws
-  }
+
 }
 
 module "local_module_vpc" {
   source = "../modules/terraform-aws-vpc"
 
-  providers = {
-    aws = aws
-  }
+
 }
 
 module "local_module_subnet" {
@@ -37,9 +33,7 @@ module "local_module_subnet" {
 
   vpc_id = module.local_module_vpc.aws_vpc_vpc_id
 
-  providers = {
-    aws = aws
-  }
+
 }
 
 module "local_module_sg" {
@@ -50,9 +44,7 @@ module "local_module_sg" {
 
   vpc_id = module.local_module_vpc.aws_vpc_vpc_id
 
-  providers = {
-    aws = aws
-  }
+
 }
 
 module "local_module_route_table" {
@@ -73,9 +65,7 @@ module "local_module_route_table" {
   subnet_id_pub-a = module.local_module_subnet.aws_subnet_pub-a_id
   subnet_id_pub-c = module.local_module_subnet.aws_subnet_pub-c_id
 
-  providers = {
-    aws = aws
-  }
+
 }
 
 module "local_module_igw" {
@@ -86,9 +76,7 @@ module "local_module_igw" {
 
   vpc_id = module.local_module_vpc.aws_vpc_vpc_id
 
-  providers = {
-    aws = aws
-  }
+
 }
 
 locals {
@@ -112,7 +100,5 @@ module "local_module_alb" {
   aws_security_group_alb0_id = module.local_module_sg.aws_security_group_sg-alb0_id
   target_id_tg-alb0 = local.target_id_tg-alb0
 
-  providers = {
-    aws = aws
-  }
+
 }
