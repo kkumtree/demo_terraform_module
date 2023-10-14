@@ -22,6 +22,13 @@ resource "aws_instance" "web-a" {
   }
 
   vpc_security_group_ids = [ var.sg_sg-web_id ]
+
+  lifecycle {
+    ignore_changes = [
+      tags,
+      ami,
+    ]
+  }
 }
 
 resource "aws_instance" "web-c" {
@@ -48,6 +55,13 @@ resource "aws_instance" "web-c" {
   }
 
   vpc_security_group_ids = [ var.sg_sg-web_id ]
+
+  lifecycle {
+    ignore_changes = [
+      tags,
+      ami,
+    ]
+  }
 }
 
 resource "aws_instance" "nat-a" {
@@ -68,6 +82,13 @@ resource "aws_instance" "nat-a" {
   }
 
   vpc_security_group_ids = [ var.sg_sg-nat_id ]
+
+  lifecycle {
+    ignore_changes = [
+      tags,
+      ami,
+    ]
+  }
 }
 
 resource "aws_instance" "nat-c" {
@@ -88,6 +109,13 @@ resource "aws_instance" "nat-c" {
   }
 
   vpc_security_group_ids = [ var.sg_sg-nat_id ]
+
+  lifecycle {
+    ignore_changes = [
+      tags,
+      ami,
+    ]
+  }
 }
 
 resource "aws_instance" "ssh" {
@@ -113,6 +141,13 @@ resource "aws_instance" "ssh" {
   source_dest_check = "true"
   subnet_id = var.subnet_pub-a_id
   vpc_security_group_ids = [ var.sg_sg-ssh_id ]
+
+  lifecycle {
+    ignore_changes = [
+      tags,
+      ami,
+    ]
+  }
 }
 
 /* resource "aws_instance" "ssh-c" {
