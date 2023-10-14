@@ -1,6 +1,6 @@
 module "local_module_ec2" {
   /* source = "../modules/terraform-aws-ec2" */
-  source = "git::git@github.com:kkumtree/demo_terraform_module.git//modules/terraform-aws-ec2?ref=settings-for-tfc"
+  source = "git::git@github.com:kkumtree/demo_terraform_module.git//modules/terraform-aws-ec2?ref=setting-for-tfc"
   depends_on = [ 
     module.local_module_vpc, 
     module.local_module_subnet,
