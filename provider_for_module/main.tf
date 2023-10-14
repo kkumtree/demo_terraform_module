@@ -1,4 +1,11 @@
 terraform {
+  cloud {
+    organization = "kkumtree"
+
+    workspaces {
+      name = "t101"
+    }
+  }
   required_providers {
     aws = {
       source = "hashicorp/aws"

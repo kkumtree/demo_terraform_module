@@ -6,10 +6,10 @@ resource "aws_instance" "web-a" {
   instance_type = var.instance_type_amd64
   key_name = var.key_name
 
-  launch_template {
+  /* launch_template {
     id     = data.aws_launch_template.web-tpl-al2-amd64.id
     version = "$Latest"
-  }
+  } */
 
   subnet_id = var.subnet_pri-a_id
 
@@ -32,10 +32,10 @@ resource "aws_instance" "web-c" {
   instance_type = var.instance_type_amd64
   key_name = var.key_name
 
-  launch_template {
+  /* launch_template {
     id     = data.aws_launch_template.web-tpl-al2-amd64.id
     version = "$Latest"
-  }
+  } */
 
   subnet_id = var.subnet_pri-c_id
 

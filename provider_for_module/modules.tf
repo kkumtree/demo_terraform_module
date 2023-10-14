@@ -1,5 +1,6 @@
 module "local_module_ec2" {
-  source = "../modules/terraform-aws-ec2"
+  /* source = "../modules/terraform-aws-ec2" */
+  source = "git::git@github.com:kkumtree/demo_terraform_module.git//modules/terraform-aws-ec2?ref=settings-for-tfc"
   depends_on = [ 
     module.local_module_vpc, 
     module.local_module_subnet,
@@ -20,13 +21,14 @@ module "local_module_ec2" {
 }
 
 module "local_module_vpc" {
-  source = "../modules/terraform-aws-vpc"
-
+  /* source = "../modules/terraform-aws-vpc" */
+  source = "git::git@github.com:kkumtree/demo_terraform_module.git//modules/terraform-aws-vpc?ref=main"
 
 }
 
 module "local_module_subnet" {
-  source = "../modules/terraform-aws-subnet"
+  /* source = "../modules/terraform-aws-subnet" */
+  source = "git::git@github.com:kkumtree/demo_terraform_module.git//modules/terraform-aws-subnet?ref=main"
   depends_on = [ 
     module.local_module_vpc
   ]
@@ -37,7 +39,8 @@ module "local_module_subnet" {
 }
 
 module "local_module_sg" {
-  source = "../modules/terraform-aws-sg"
+  /* source = "../modules/terraform-aws-sg" */
+    source = "git::git@github.com:kkumtree/demo_terraform_module.git//modules/terraform-aws-sg?ref=main"
   depends_on = [ 
     module.local_module_vpc
   ]
@@ -48,7 +51,8 @@ module "local_module_sg" {
 }
 
 module "local_module_route_table" {
-  source = "../modules/terraform-aws-route_table"
+  /* source = "../modules/terraform-aws-route_table" */
+  source = "git::git@github.com:kkumtree/demo_terraform_module.git//modules/terraform-aws-route_table?ref=main"
   depends_on = [ 
     module.local_module_vpc, 
     module.local_module_subnet,
@@ -69,7 +73,8 @@ module "local_module_route_table" {
 }
 
 module "local_module_igw" {
-  source = "../modules/terraform-aws-igw"
+  /* source = "../modules/terraform-aws-igw" */
+  source = "git::git@github.com:kkumtree/demo_terraform_module.git//modules/terraform-aws-igw?ref=main"
   depends_on = [ 
     module.local_module_vpc
   ]
@@ -86,7 +91,8 @@ locals {
   }
 }
 module "local_module_alb" {
-  source = "../modules/terraform-aws-alb"
+  /* source = "../modules/terraform-aws-alb" */
+    source = "git::git@github.com:kkumtree/demo_terraform_module.git//modules/terraform-aws-alb?ref=main"
   depends_on = [ 
     module.local_module_vpc, 
     module.local_module_subnet,
