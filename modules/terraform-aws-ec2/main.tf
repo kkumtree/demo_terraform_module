@@ -1,15 +1,15 @@
 resource "aws_instance" "web-a" {
-  ami = data.aws_ami.al2-amd64.id
+  ami = data.aws_ssm_parameter.al2023-x86_64.value
   associate_public_ip_address = "false"
 
-  iam_instance_profile = var.iam_instance_profile_web
+  # iam_instance_profile = var.iam_instance_profile_web
   instance_type = var.instance_type_amd64
   key_name = var.key_name
 
-  launch_template {
-    id     = data.aws_launch_template.web-tpl-al2-amd64.id
-    version = "$Latest"
-  }
+  # launch_template {
+  #   id     = data.aws_launch_template.web-tpl-al2-amd64.id
+  #   version = "$Latest"
+  # }
 
   subnet_id = var.subnet_pri-a_id
 
@@ -22,20 +22,26 @@ resource "aws_instance" "web-a" {
   }
 
   vpc_security_group_ids = [ var.sg_sg-web_id ]
+
+  lifecycle {
+    ignore_changes = [
+      ami
+    ]
+  }
 }
 
 resource "aws_instance" "web-c" {
-  ami = data.aws_ami.al2-amd64.id
+  ami = data.aws_ssm_parameter.al2023-x86_64.value
   associate_public_ip_address = "false"
 
-  iam_instance_profile = var.iam_instance_profile_web
+  # iam_instance_profile = var.iam_instance_profile_web
   instance_type = var.instance_type_amd64
   key_name = var.key_name
 
-  launch_template {
-    id     = data.aws_launch_template.web-tpl-al2-amd64.id
-    version = "$Latest"
-  }
+  # launch_template {
+  #   id     = data.aws_launch_template.web-tpl-al2-amd64.id
+  #   version = "$Latest"
+  # }
 
   subnet_id = var.subnet_pri-c_id
 
@@ -48,6 +54,12 @@ resource "aws_instance" "web-c" {
   }
 
   vpc_security_group_ids = [ var.sg_sg-web_id ]
+
+  lifecycle {
+    ignore_changes = [
+      ami
+    ]
+  }
 }
 
 resource "aws_instance" "nat-a" {
@@ -68,6 +80,12 @@ resource "aws_instance" "nat-a" {
   }
 
   vpc_security_group_ids = [ var.sg_sg-nat_id ]
+
+  lifecycle {
+    ignore_changes = [
+      ami
+    ]
+  }
 }
 
 resource "aws_instance" "nat-c" {
@@ -88,13 +106,19 @@ resource "aws_instance" "nat-c" {
   }
 
   vpc_security_group_ids = [ var.sg_sg-nat_id ]
+
+  lifecycle {
+    ignore_changes = [
+      ami
+    ]
+  }
 }
 
 resource "aws_instance" "ssh" {
-  ami = data.aws_ami.al2023-arm64.id
+  ami = data.aws_ssm_parameter.al2023-x86_64.value
   associate_public_ip_address = "true"
 
-  instance_type = var.instance_type_arm64
+  instance_type = var.instance_type_amd64
   key_name = var.key_name
 
   metadata_options {
@@ -113,6 +137,12 @@ resource "aws_instance" "ssh" {
   source_dest_check = "true"
   subnet_id = var.subnet_pub-a_id
   vpc_security_group_ids = [ var.sg_sg-ssh_id ]
+
+  lifecycle {
+    ignore_changes = [
+      ami
+    ]
+  }
 }
 
 /* resource "aws_instance" "ssh-c" {

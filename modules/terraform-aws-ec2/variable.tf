@@ -1,6 +1,6 @@
 variable "instance_type_amd64" {
   description = "Instance type for AMD64 instances"
-  default = "t2.micro"
+  default = "t3.micro"
 }
   
 variable "instance_type_arm64" {
@@ -15,7 +15,7 @@ variable "iam_instance_profile_web" {
 
 variable "key_name" {
   description = "Key name for lab instances"
-  default = "m1-air"
+  default = "BSOP-04-E450-LUBUNTU"
 }
 
 variable "instance_tag_name_web-a" {

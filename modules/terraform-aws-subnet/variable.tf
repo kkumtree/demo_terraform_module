@@ -48,6 +48,16 @@ variable "az_seoul_c" {
   default = "ap-northeast-2c"
 }
 
+variable "az_mumbai_a" {
+  description = "Availability zone for the instances"
+  default = "ap-south-1a"
+}
+
+variable "az_mumbai_c" {
+  description = "Availability zone for the instances"
+  default = "ap-south-1c"
+}
+
 variable "vpc_id" {
   description = "CIDR block for the public subnet A"
   default     =  null
